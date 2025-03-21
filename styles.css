@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .piano {
+    display: flex;
+    position: relative;
+  }
+  
+  .key {
+    cursor: pointer;
+  }
+  
+  .white {
+    width: 80px; /* Reduced width to fit more keys */
+    height: 400px; /* Increased height by 80% (200px * 1.8) */
+    background-color: white;
+    border: 1px solid #ccc;
+  }
+  
+  .black {
+    width: 40px; /* Reduced width to fit more keys */
+    height: 216px; /* Increased height by 80% (120px * 1.8) */
+    background-color: black;
+    position: absolute;
+    margin-left: -15px; /* Adjusted to align with narrower keys */
+    z-index: 1;
+  }
+  
+/* Positioning the black keys */
+.black[data-note="C#3"] { left: 60px; } /* 80px * 0.75 */
+.black[data-note="D#3"] { left: 140px; } /* 80px * 1.75 */
+.black[data-note="F#3"] { left: 300px; } /* 80px * 3.75 */
+.black[data-note="G#3"] { left: 380px; } /* 80px * 4.75 */
+.black[data-note="A#3"] { left: 460px; } /* 80px * 5.75 */
+.black[data-note="C#4"] { left: 620px; } /* 80px * 7.75 */
+.black[data-note="D#4"] { left: 700px; } /* 80px * 8.75 */
+.black[data-note="F#4"] { left: 860px; } /* 80px * 10.75 */
+.black[data-note="G#4"] { left: 940px; } /* 80px * 11.75 */
+.black[data-note="A#4"] { left: 1020px; } /* 80px * 12.75 */
+.black[data-note="C#5"] { left: 1180px; } /* 80px * 14.75 */
+.black[data-note="D#5"] { left: 1260px; } /* 80px * 15.75 */
+.black[data-note="F#5"] { left: 1420px; } /* 80px * 17.75 */
+.black[data-note="G#5"] { left: 1500px; } /* 80px * 18.75 */
+.black[data-note="A#5"] { left: 1580px; } /* 80px * 19.75 */
+
+.key:active, .key.active {
+    background-color: #ccc; /* Change color when key is pressed */
+  }
+  
+  .white:active, .white.active {
+    background-color: #ddd; /* Lighter color for white keys */
+  }
+  
+  .black:active, .black.active {
+    background-color: #333; /* Darker color for black keys */
+  }
