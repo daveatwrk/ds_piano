@@ -47,7 +47,7 @@ const activeBuffers = {};
 
 // Load a single piano sample (e.g., C4)
 let pianoSample;
-fetch("Piano-C4.wav") // Replace with the path to your piano sample
+fetch("Base-Drum-1.wav") // Replace with the path to your piano sample
   .then(response => response.arrayBuffer())
   .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
   .then(audioBuffer => {
