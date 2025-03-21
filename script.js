@@ -47,8 +47,39 @@ const notes = {
 // Store active audio buffers for each note
 const activeBuffers = {};
 
+// Load audio samples for each instrument
+let instruments = {
+    piano: null,
+    guitar: null,
+    drums: null
+  };
+  
+const instrumentSelector = document.getElementById("instrument");
+
+// Function to load an audio sample
+function loadSample(instrument, url) {
+    return fetch(url)
+        .then(response => response.arrayBuffer())
+        .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+        .then(audioBuffer => {
+        instruments[instrument] = audioBuffer;
+        });
+}
+
+// Load all samples
+Promise.all([
+    loadSample("piano", "sounds/piano-C4.wav"),
+    loadSample("guitar", "sounds/guitar-C4.wav"),
+    loadSample("drums", "sounds/Bass-Drum-1.wav")
+]).then(() => {
+    console.log("All samples loaded successfully");
+}).catch(error => {
+    console.error("Error loading samples:", error);
+});
+
 // Load a single piano sample (e.g., C4)
 let pianoSample;
+
 fetch("Bass-Drum-1.wav") // Replace with the path to your piano sample
   .then(response => response.arrayBuffer())
   .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
