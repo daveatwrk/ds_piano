@@ -58,12 +58,14 @@ fetch("Bass-Drum-1.wav") // Replace with the path to your piano sample
 
 // Function to play a note
 function playNote(frequency) {
-    if (!pianoSample) return; // Ensure the sample is loaded
+    const selectedInstrument = instrumentSelector.value;
+    const sample = instruments[selectedInstrument];
+    if (!sample) return; // Ensure the sample is loaded
   
     const source = audioContext.createBufferSource();
     const gainNode = audioContext.createGain();
   
-    source.buffer = pianoSample;
+    source.buffer = sample;
     source.playbackRate.value = frequency / 261.63; // Pitch-shift to the desired note (C4 = 261.63Hz)
     source.connect(gainNode);
     gainNode.connect(audioContext.destination);
@@ -74,13 +76,13 @@ function playNote(frequency) {
     // Store the source so we can stop it later
     activeBuffers[frequency] = { source, gainNode };
   }
-
-// Function to stop a note
-function stopNote(frequency) {
+  
+  // Function to stop a note
+  function stopNote(frequency) {
     if (activeBuffers[frequency]) {
       const { source, gainNode } = activeBuffers[frequency];
-      gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.02); // Faster fade out
-      source.stop(audioContext.currentTime + 0.05); // Stop after fade out
+      gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.05); // Fade out
+      source.stop(audioContext.currentTime + 0.02); // Stop after fade out
       delete activeBuffers[frequency]; // Remove from active buffers
     }
   }
