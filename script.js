@@ -56,15 +56,22 @@ let instruments = {
   
 const instrumentSelector = document.getElementById("instrument");
 
-// Function to load an audio sample
 function loadSample(instrument, url) {
     return fetch(url)
-        .then(response => response.arrayBuffer())
-        .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
-        .then(audioBuffer => {
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Failed to load ${url}: ${response.statusText}`);
+        }
+        return response.arrayBuffer();
+      })
+      .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+      .then(audioBuffer => {
         instruments[instrument] = audioBuffer;
-        });
-}
+      })
+      .catch(error => {
+        console.error(`Error loading ${url}:`, error);
+      });
+  }
 
 // Load all samples
 Promise.all([
