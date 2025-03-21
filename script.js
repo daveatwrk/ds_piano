@@ -42,12 +42,14 @@ const notes = {
   "C6": 1046.50
 };
 
+// Bass-Drum-1.wav
+
 // Store active audio buffers for each note
 const activeBuffers = {};
 
 // Load a single piano sample (e.g., C4)
 let pianoSample;
-fetch("Base-Drum-1.wav") // Replace with the path to your piano sample
+fetch("Bass-Drum-1.wav") // Replace with the path to your piano sample
   .then(response => response.arrayBuffer())
   .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
   .then(audioBuffer => {
@@ -135,4 +137,16 @@ function getKeyUnderTouch(touch) {
         delete activeTouches[touch.identifier];
       }
     });
+  });
+
+  // Disable right-click on piano keys
+document.querySelectorAll(".key").forEach(key => {
+    key.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+    });
+  });
+
+  // Disable right-click context menu
+document.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
   });
