@@ -77,7 +77,7 @@ function playNote(frequency) {
 function stopNote(frequency) {
     if (activeBuffers[frequency]) {
       const { source, gainNode } = activeBuffers[frequency];
-      gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.05); // Faster fade out
+      gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.02); // Faster fade out
       source.stop(audioContext.currentTime + 0.05); // Stop after fade out
       delete activeBuffers[frequency]; // Remove from active buffers
     }
