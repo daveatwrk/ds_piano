@@ -87,7 +87,7 @@ Promise.all([
 // Load a single piano sample (e.g., C4)
 let pianoSample;
 
-fetch("Bass-Drum-1.wav") // Replace with the path to your piano sample
+fetch("sounds/Piano-C4.wav") // Replace with the path to your piano sample
   .then(response => response.arrayBuffer())
   .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
   .then(audioBuffer => {
