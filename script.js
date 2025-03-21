@@ -75,8 +75,8 @@ function loadSample(instrument, url) {
 
 // Load all samples
 Promise.all([
-    loadSample("piano", "sounds/piano-C4.wav"),
-    loadSample("guitar", "sounds/guitar-C4.wav"),
+    loadSample("piano", "sounds/Piano-C4.wav"),
+    loadSample("guitar", "sounds/Guitar-C4.wav"),
     loadSample("drums", "sounds/Bass-Drum-1.wav")
 ]).then(() => {
     console.log("All samples loaded successfully");
